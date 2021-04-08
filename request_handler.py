@@ -3,6 +3,8 @@ from animals import get_all_animals
 from animals import  get_single_animal
 from locations import get_all_locations
 from locations import get_single_location
+from employees import get_single_employee
+from employees import get_all_employees
 
 
 # Here's a class. It inherits from another class.

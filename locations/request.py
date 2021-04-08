@@ -29,7 +29,7 @@ def get_single_location(id):
     for location in LOCATIONS:
         # Dictionaries in Python use [] notation to find a key
         # instead of the dot notation that JavaScript used.
-        if locations["id"] == id:
-            requested_locations= location
+        if location["id"] == id:
+            requested_location= location
     
-    return requested_locations
+    return requested_location

@@ -37,7 +37,7 @@ def get_all_employees():
 # Function with a single parameter
 def get_single_employee(id):
     # Variable to hold the found employees if it exists
-    requested_employees= None
+    requested_employee= None
 
     # Iterate the employees list above. Very similar to the
     # for..of loops you used in JavaScript.
@@ -45,6 +45,6 @@ def get_single_employee(id):
         # Dictionaries in Python use [] notation to find a key
         # instead of the dot notation that JavaScript used.
         if employee["id"] == id:
-            requested_employees= employee
+            requested_employee= employee
     
-    return requested_employees
+    return requested_employee
