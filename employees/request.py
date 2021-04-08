@@ -41,9 +41,10 @@ def get_single_employee(id):
 
     # Iterate the employees list above. Very similar to the
     # for..of loops you used in JavaScript.
-    for employees in EMPLOYEES:
+    for employee in EMPLOYEES:
         # Dictionaries in Python use [] notation to find a key
         # instead of the dot notation that JavaScript used.
-        if employees["id"] == id:
-            requested_employees= employees
+        if employee["id"] == id:
+            requested_employees= employee
+    
     return requested_employees

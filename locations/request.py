@@ -26,9 +26,10 @@ def get_single_location(id):
 
     # Iterate the LOCATIONS list above. Very similar to the
     # for..of loops you used in JavaScript.
-    for locations in LOCATIONS:
+    for location in LOCATIONS:
         # Dictionaries in Python use [] notation to find a key
         # instead of the dot notation that JavaScript used.
         if locations["id"] == id:
-            requested_locations= locations
+            requested_locations= location
+    
     return requested_locations
