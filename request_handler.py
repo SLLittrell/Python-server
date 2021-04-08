@@ -5,6 +5,8 @@ from locations import get_all_locations
 from locations import get_single_location
 from employees import get_single_employee
 from employees import get_all_employees
+from customers import get_all_customers
+from customers import get_single_customer
 
 
 # Here's a class. It inherits from another class.
@@ -77,6 +79,13 @@ class HandleRequests(BaseHTTPRequestHandler):
 
             else:
                 response = f"{get_all_employees()}"
+        
+        if resource == "customers":
+            if id is not None:
+                response = f"{get_single_customer(id)}"
+
+            else:
+                response = f"{get_all_customers()}"
         
         self.wfile.write(response.encode())
 
