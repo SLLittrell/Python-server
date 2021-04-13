@@ -99,12 +99,12 @@ class HandleRequests(BaseHTTPRequestHandler):
         
         if resource == "customers":
             if id is not None:
-                response = get_single_customer(id)
+                response = f"{get_single_customer(id)}"
 
             else:
-                response = get_all_customers()
+                response = f"{get_all_customers()}"
         
-        self.wfile.write(json.dumps(response).encode())
+        self.wfile.write(f"{response}".encode())
 
     # Here's a method on the class that overrides the parent's method.
     # It handles any POST request.
