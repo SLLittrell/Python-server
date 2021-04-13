@@ -165,7 +165,8 @@ class HandleRequests(BaseHTTPRequestHandler):
         
 
         # Encode the new animal and send in response
-        self.wfile.write("".encode())
+        # Not needed because 204 does not return anything
+        # self.wfile.write("".encode())
 
 
     def do_DELETE(self):

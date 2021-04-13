@@ -75,6 +75,7 @@ def delete_animal(id):
     if animal_index >= 0:
         ANIMALS.pop(animal_index)
 
+# id not necessary if new_animal hs an Id
 def update_animal(id, new_animal):
     # Iterate the ANIMALS list, but use enumerate() so that
     # you can access the index value of each item.
