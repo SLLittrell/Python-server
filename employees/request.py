@@ -1,3 +1,7 @@
+import sqlite3
+import json
+from models import Employee
+
 EMPLOYEES = [
     {
       "id": 1,
@@ -32,22 +36,52 @@ EMPLOYEES = [
   ]
 
 def get_all_employees():
-    return EMPLOYEES
+    with sqlite3.connect("./kennel.db") as conn:
+
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        SELECT
+            e.id,
+            e.name,
+            e.location_id
+        FROM employee e
+        """)
+
+        employees = []
+
+        dataset = db_cursor.fetchall()
+
+        for row in dataset:
+
+            employee = Employee(row['id'], row['name'], row['location_id'])
+
+            employees.append(employee.__dict__)
+
+    return json.dumps(employees)
 
 # Function with a single parameter
 def get_single_employee(id):
-    # Variable to hold the found employees if it exists
-    requested_employee= None
+    with sqlite3.connect("./kennel.db") as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
 
-    # Iterate the employees list above. Very similar to the
-    # for..of loops you used in JavaScript.
-    for employee in EMPLOYEES:
-        # Dictionaries in Python use [] notation to find a key
-        # instead of the dot notation that JavaScript used.
-        if employee["id"] == id:
-            requested_employee= employee
-    
-    return requested_employee
+        db_cursor.execute("""
+        SELECT
+            e.id,
+            e.name,
+            e.location_id
+        FROM employee e
+        WHERE e.id = ?
+        """, ( id, ))
+        
+        data = db_cursor.fetchone()
+
+        employee = Employee(data['id'], data['name'], data['location_id'])
+
+        return json.dumps(employee.__dict__)
+
 
 def create_employee(employee):
     max_id = EMPLOYEES[-1]["id"]
