@@ -16,6 +16,7 @@ from locations import update_location
 #employees
 from employees import get_single_employee
 from employees import get_all_employees
+from employees import get_employees_by_location
 from employees import create_employee
 from employees import delete_employee
 from employees import update_employee
@@ -129,6 +130,9 @@ class HandleRequests(BaseHTTPRequestHandler):
             
             if key == "location_id" and resource == "animals":
                 response = get_animals_by_location(value)
+            
+            if key == "location_id" and resource == "employees":
+                response = get_employees_by_location(value)
 
         self.wfile.write(response.encode())
 
