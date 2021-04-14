@@ -132,6 +132,7 @@ class HandleRequests(BaseHTTPRequestHandler):
             if key == "location_id" and resource == "animals":
                 response = get_animals_by_location(value)
             
+            
             if key == "status" and resource == "animals":
                 response = get_animals_by_status(value)
             
