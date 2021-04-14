@@ -4,6 +4,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from animals import get_all_animals
 from animals import  get_single_animal
 from animals import  get_animals_by_location
+from animals import  get_animals_by_status
 from animals import  create_animal
 from animals import  delete_animal
 from animals import  update_animal
@@ -130,6 +131,9 @@ class HandleRequests(BaseHTTPRequestHandler):
             
             if key == "location_id" and resource == "animals":
                 response = get_animals_by_location(value)
+            
+            if key == "status" and resource == "animals":
+                response = get_animals_by_status(value)
             
             if key == "location_id" and resource == "employees":
                 response = get_employees_by_location(value)
