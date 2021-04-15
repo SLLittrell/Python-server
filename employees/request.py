@@ -85,16 +85,28 @@ def get_employees_by_location(location_id):
     return json.dumps(employees)
 
 
-def create_employee(employee):
-    max_id = EMPLOYEES[-1]["id"]
+def create_employee(new_employee):
   
-    new_id = max_id + 1
-  
-    employee["id"] = new_id
-  
-    EMPLOYEES.append(employee)
+    with sqlite3.connect("./kennel.db") as conn:
+        db_cursor = conn.cursor()
 
-    return employee
+        db_cursor.execute("""
+        INSERT INTO Employee
+            ( name,  location_id, address )
+        VALUES
+            ( ?, ?, ?);
+        """, (new_employee['name'], new_employee['location_id'], new_employee['address']))
+
+       
+        id = db_cursor.lastrowid
+
+        # Add the `id` property to the animal dictionary that
+        # was sent by the client so that the client sees the
+        # primary key in the response.
+        new_employee['id'] = id
+
+
+    return json.dumps(new_employee)
 
 def delete_employee(id):
     employee_index = -1
